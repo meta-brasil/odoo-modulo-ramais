@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!--LIST VIEW-->
+    <record id="view_ramal_funcionario_list" model="ir.ui.view">
+        <field name="name">ramal.funcionario.list</field>
+        <field name="model">ramal.funcionario</field>
+        <field name="arch" type="xml">
+            <list string="Ramais de Funcionários">
+                <field name="employee_id"/>
+                <field name="ramal"/>
+                <field name="mobile_phone"/>
+                <field name="work_email"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!--FORM VIEW-->
+    <record id="view_ramal_funcionario_form" model="ir.ui.view">
+        <field name="name">ramal.funcionario.form</field>
+        <field name="model">ramal.funcionario</field>
+        <field name="arch" type="xml">
+            <form string="Ramal do Funcionário">
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="ramal"/>
+                    </group>
+
+                    <group>
+                        <field name="mobile_phone"/>
+                        <field name="work_email"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--ACTION-->
+    <record id="action_ramal_funcionario" model="ir.actions.act_window">
+        <field name="name">Ramais</field>
+        <field name="res_model">ramal.funcionario</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!--MENU-->
+    <menuitem id="menu_ramal_root"
+              name="Ramais"
+              sequence="10"/>
+
+    <menuitem id="menu_ramal_funcionario"
+              name="Ramais de Funcionários"
+              parent="menu_ramal_root"
+              action="action_ramal_funcionario"
+              sequence="10"/>
+
+</odoo>
