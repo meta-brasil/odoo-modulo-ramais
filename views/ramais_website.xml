@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- TEMPLATE DA PÁGINA -->
+        <template id="ramais_page" name="Ramais - Página">
+            <t t-call="website.layout">
+                <div class="container my-5">
+                    <div class="p-4 bg-white rounded shadow">
+                        <h1 class="mb-4">Ramais</h1>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Ramal</th>
+                                    <th>Celular</th>
+                                    <th>E-mail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="ramais" t-as="r">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="r.employee_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="r.ramal"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="r.mobile_phone or ''"/>
+                                        </td>
+                                        <td>
+                                            <t t-if="r.work_email">
+                                                <a t-attf-href="mailto:#{r.work_email}">
+                                                    <t t-esc="r.work_email"/>
+                                                </a>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

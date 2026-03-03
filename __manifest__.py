@@ -8,10 +8,11 @@
     "description": """
 Módulo para gerenciamento e controle de ramais.
 """,
-    "depends": ["base", "hr"],
+    "depends": ["base", "hr", "website"],
     "data": [
         "security/ir.model.access.csv",
         "views/ramal_views.xml",
+        "views/ramais_website.xml",
     ],
     "installable": True,
     "application": True,
