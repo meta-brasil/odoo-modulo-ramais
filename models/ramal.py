@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class RamalFuncionario(models.Model):
     _name = "ramal.funcionario"
@@ -6,13 +6,12 @@ class RamalFuncionario(models.Model):
     _rec_name = "employee_id"
 
     employee_id = fields.Many2one(
-        comodel_name="hr.employee",
+        "hr.employee",
         string="Funcionário",
         required=True,
         ondelete="cascade",
     )
 
-   
     employee_name = fields.Char(
         string="Nome",
         related="employee_id.name",
@@ -20,7 +19,7 @@ class RamalFuncionario(models.Model):
         readonly=True,
     )
 
-    ramal = fields.Char(string="Ramal", required=True)
+    # ramal = fields.Char(string="Ramal", required=True)
 
     mobile_phone = fields.Char(
         string="Celular",
@@ -29,14 +28,27 @@ class RamalFuncionario(models.Model):
         readonly=False,
     )
 
+
+    work_phone = fields.Char(
+        string="Ramal",
+        related="employee_id.work_phone",
+        store=True,
+        readonly=False,
+    )
+
     work_email = fields.Char(
         string="E-mail",
         related="employee_id.work_email",
         store=True,
-        readonly=False,  
+        readonly=False,
     )
+    
+    @api.onchange("employee_id")
+    def _onchange_employee_id(self):
+        if self.employee_id:
+            self.ramal = self.employee_id.work_phone
 
     _sql_constraints = [
-        ("uniq_employee", "unique(employee_id)", "Este funcionário já possui um ramal cadastrado."),
-        ("uniq_ramal", "unique(ramal)", "Este ramal já está em uso."),
-    ]
+         ("uniq_employee", "unique(employee_id)", "Este funcionário já possui um ramal cadastrado."),
+         ("uniq_ramal", "unique(ramal)", "Este ramal já está em uso."),
+     ]

@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <list string="Ramais de Funcionários">
                 <field name="employee_id"/>
-                <field name="ramal"/>
+                <field name="work_phone"/>
                 <field name="mobile_phone"/>
                 <field name="work_email"/>
             </list>
@@ -25,7 +25,7 @@
                 <sheet>
                     <group>
                         <field name="employee_id"/>
-                        <field name="ramal"/>
+                        <field name="work_phone"/>
                     </group>
 
                     <group>
